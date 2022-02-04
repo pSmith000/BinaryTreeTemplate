@@ -51,3 +51,96 @@ private:
 };
 
 #endif
+
+template<typename T>
+inline BinaryTree<T>::BinaryTree()
+{
+}
+
+template<typename T>
+inline BinaryTree<T>::~BinaryTree()
+{
+}
+
+template<typename T>
+inline bool BinaryTree<T>::isEmpty() const
+{
+	return false;
+}
+
+template<typename T>
+inline void BinaryTree<T>::insert(T value)
+{
+	TreeNode<T>* newNode = new TreeNode<T>(value);
+	TreeNode<T>* tempNode = m_root;
+
+	if (m_root == nullptr)
+	{
+		m_root = newNode;
+		return;
+	}
+
+	while (tempNode != nullptr)
+	{
+		if (tempNode->getData() < value)
+			tempNode = tempNode->getLeft();
+		else
+			(tempNode = tempNode->getRight());
+	}
+
+	tempNode = newNode;
+}
+
+template<typename T>
+inline void BinaryTree<T>::remove(T value)
+{
+}
+
+template<typename T>
+inline TreeNode<T>* BinaryTree<T>::find(T value)
+{
+	return NULL;
+}
+
+template<typename T>
+inline void BinaryTree<T>::draw(TreeNode<T>* selected)
+{
+
+}
+
+template<typename T>
+inline bool BinaryTree<T>::findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent)
+{
+	return false;
+}
+
+template<typename T>
+inline void BinaryTree<T>::draw(TreeNode<T>* currentNode, int x, int y, int horizontalSpacing, TreeNode<T>* selected)
+{
+	//Decrease the horizontl space as the nodes draw
+	horizontalSpacing /= 2;
+
+	//Check if the current node is null
+	if (currentNode)
+	{
+		//Draws left child if this node has one
+		if (currentNode->hasLeft())
+		{
+			//Draws a line child if this node has one
+			DrawLine(x, y, x - horizontalSpacing, y + 80, RED);
+			//Draws the left child
+			draw(currentNode->getLeft(), x - horizontalSpacing, y + 80, horizontalSpacing, selected);
+		}
+
+		//Draws the right child if this node has one
+		if (currentNode->hasRight())
+		{
+			//Draws a line between this child and the current node
+			DrawLine(x, y, x + horizontalSpacing, y + 80, RED);
+			//Draws the right child
+			draw(currentNode->getRight(), x + horizontalSpacing, y + 80, horizontalSpacing, selected);
+		}
+		//Draws the current node
+		currentNode->draw(x, y, (selected == currentNode));
+	}
+}
