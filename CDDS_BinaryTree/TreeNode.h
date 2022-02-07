@@ -116,6 +116,7 @@ template<typename T>
 inline void TreeNode<T>::setRight(TreeNode<T>* node)
 {
 	m_right = node;
+
 }
 
 template<typename T>
