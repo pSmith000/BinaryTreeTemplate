@@ -127,12 +127,12 @@ inline void BinaryTree<T>::remove(T value)
 
 	if (!nodeToRemove->hasRight() && !nodeToRemove->hasLeft())
 	{
+		if (!nodeParent->getLeft() && !nodeParent->getRight())
+			m_root = nullptr;
 		if (nodeToRemove->getData() < nodeParent->getData())
 			nodeParent->setLeft(nullptr);
 		if (nodeToRemove->getData() > nodeParent->getData())
 			nodeParent->setRight(nullptr);
-		if (!nodeParent->getLeft() && !nodeParent->getRight())
-			m_root = nullptr;
 		delete nodeToRemove;
 	}
 	else if (bool(nodeToRemove->hasRight()) ^ bool(nodeToRemove->hasLeft()))
@@ -288,7 +288,7 @@ inline void BinaryTree<T>::draw(TreeNode<T>* currentNode, int x, int y, int hori
 		if (currentNode->hasLeft())
 		{
 			//Draws a line child if this node has one
-			DrawLine(x, y, x - horizontalSpacing, y + 80, RED);
+			DrawLine(x, y, x - horizontalSpacing, y + 80, BLACK);
 			//Draws the left child
 			draw(currentNode->getLeft(), x - horizontalSpacing, y + 80, horizontalSpacing, selected);
 		}
@@ -297,7 +297,7 @@ inline void BinaryTree<T>::draw(TreeNode<T>* currentNode, int x, int y, int hori
 		if (currentNode->hasRight())
 		{
 			//Draws a line between this child and the current node
-			DrawLine(x, y, x + horizontalSpacing, y + 80, RED);
+			DrawLine(x, y, x + horizontalSpacing, y + 80, BLACK);
 			//Draws the right child
 			draw(currentNode->getRight(), x + horizontalSpacing, y + 80, horizontalSpacing, selected);
 		}
