@@ -120,7 +120,6 @@ inline void BinaryTree<T>::remove(T value)
 	TreeNode<T>* nodeToRemove = new TreeNode<T> (value);
 	TreeNode<T>* nodeParent = new TreeNode<T>();
 	TreeNode<T>* currentNode = nullptr;
-	bool removed = false;
 
 	if (!findNode(value, nodeToRemove, nodeParent))
 		return;
