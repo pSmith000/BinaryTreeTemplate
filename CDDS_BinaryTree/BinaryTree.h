@@ -137,33 +137,24 @@ inline void BinaryTree<T>::remove(T value)
 	}
 	else if (bool(nodeToRemove->hasRight()) ^ bool(nodeToRemove->hasLeft()))
 	{
-		if (!nodeParent->getLeft() && !nodeParent->getRight() && nodeToRemove->hasLeft())
-		{
+		if (!nodeParent->getLeft() && !nodeParent->getRight() && nodeToRemove->hasLeft()) 
 			m_root = nodeToRemove->getLeft();
-		}
-		if (!nodeParent->getLeft() && !nodeParent->getRight() && nodeToRemove->hasRight())
-		{
-			m_root = nodeToRemove->getRight();
-		}
-		if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasRight())
-		{
-			nodeParent->setRight(nodeToRemove->getRight());
-		}
-		if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasLeft())
-		{
-			nodeParent->setRight(nodeToRemove->getLeft());
-		}
-		if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasRight())
-		{
-			nodeParent->setLeft(nodeToRemove->getRight());
-		}
-		if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasLeft())
-		{
-			nodeParent->setLeft(nodeToRemove->getLeft());
-		}
-		
-		
 
+		if (!nodeParent->getLeft() && !nodeParent->getRight() && nodeToRemove->hasRight())
+			m_root = nodeToRemove->getRight();
+		
+		if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasRight())
+			nodeParent->setRight(nodeToRemove->getRight());
+		
+		if (nodeParent->getData() < nodeToRemove->getData() && nodeToRemove->hasLeft())
+			nodeParent->setRight(nodeToRemove->getLeft());
+		
+		if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasRight())
+			nodeParent->setLeft(nodeToRemove->getRight());
+		
+		if (nodeParent->getData() > nodeToRemove->getData() && nodeToRemove->hasLeft())
+			nodeParent->setLeft(nodeToRemove->getLeft());
+		
 		delete nodeToRemove;
 	}
 
@@ -180,13 +171,11 @@ inline void BinaryTree<T>::remove(T value)
 			while (searching)
 			{
 				if (nodeParent->getLeft()->hasLeft())
-				{
 					nodeParent = nodeParent->getLeft();
-				}
+				
 				else
 				{
 					currentNode = nodeParent->getLeft();
-
 					searching = false;
 				}
 			}
@@ -197,15 +186,13 @@ inline void BinaryTree<T>::remove(T value)
 
 			delete currentNode;
 		}
-
 		else
 		{
 			nodeToRemove->setData(currentNode->getData());
 
 			if (currentNode->hasRight())
-			{
 				nodeToRemove->setRight(currentNode->getRight());
-			}
+			
 			else
 				nodeToRemove->setRight(nullptr);
 
