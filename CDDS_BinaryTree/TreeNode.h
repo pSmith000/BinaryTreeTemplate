@@ -4,8 +4,18 @@ template<typename T>
 class TreeNode
 {
 public:
+	/// <summary>
+	/// The constructor for the tree node that sets the left right and value to be base values
+	/// </summary>
 	TreeNode() {};
+
+	/// <summary>
+	/// The constructor for the tree node that sets the value given to the nodes value
+	/// </summary>
+	/// <param name="value"></param>
 	TreeNode(T value);
+
+	///The deconstructor the tree node
 	~TreeNode() {};
 
 	/// <summary>
@@ -69,6 +79,7 @@ inline TreeNode<T>::TreeNode(T value)
 template<typename T>
 inline bool TreeNode<T>::hasLeft()
 {
+	//If the left is null return false
 	if (m_left == nullptr)
 		return false;
 	return true;
@@ -77,6 +88,7 @@ inline bool TreeNode<T>::hasLeft()
 template<typename T>
 inline bool TreeNode<T>::hasRight()
 {
+	//if the right is null return false
 	if (m_right == nullptr)
 		return false;
 	return true;
