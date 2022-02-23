@@ -291,7 +291,7 @@ inline TreeNode<T>* BinaryTree<T>::find(T value)
 				//set the current node to be the current nodes left
 				currentNode = currentNode->getLeft();
 			else
-				return new TreeNode<T>();
+				return nullptr;
 		}
 
 		//if the value is greater than the current node
@@ -302,7 +302,7 @@ inline TreeNode<T>* BinaryTree<T>::find(T value)
 				//set the current node to be the current nodes right
 				currentNode = currentNode->getRight();
 			else
-				return new TreeNode<T>();
+				return nullptr;
 		}
 
 		//if the value has been found
