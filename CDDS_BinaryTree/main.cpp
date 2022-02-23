@@ -50,6 +50,7 @@ int main(int argc, char* argv[])
             binaryTree.remove(valueBoxValue);
         }
 
+
         // draw the binary tree
         binaryTree.draw(selectedNode);
         EndDrawing();

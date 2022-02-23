@@ -157,7 +157,7 @@ inline void BinaryTree<T>::remove(T value)
 	TreeNode<T>* currentNode = nullptr;
 
 	//if the node cannot be found then return
-	if (!findNode(value, nodeToRemove, nodeParent))
+	if (!findNode(value, nodeToRemove, nodeParent) || !find(value))
 		return;
 
 	//If the node to remove dowsn't have a right or a left'
@@ -273,6 +273,9 @@ inline void BinaryTree<T>::remove(T value)
 template<typename T>
 inline TreeNode<T>* BinaryTree<T>::find(T value)
 {
+	if (!m_root)
+		return new TreeNode<T>();
+
 	//a node to iterate through the tree
 	bool nodeFound = false;
 	TreeNode<T>* currentNode = m_root;
@@ -287,6 +290,8 @@ inline TreeNode<T>* BinaryTree<T>::find(T value)
 			if (currentNode->getLeft())
 				//set the current node to be the current nodes left
 				currentNode = currentNode->getLeft();
+			else
+				return new TreeNode<T>();
 		}
 
 		//if the value is greater than the current node
@@ -296,6 +301,8 @@ inline TreeNode<T>* BinaryTree<T>::find(T value)
 			if (currentNode->getRight())
 				//set the current node to be the current nodes right
 				currentNode = currentNode->getRight();
+			else
+				return new TreeNode<T>();
 		}
 
 		//if the value has been found
@@ -317,6 +324,9 @@ inline void BinaryTree<T>::draw(TreeNode<T>* selected)
 template<typename T>
 inline bool BinaryTree<T>::findNode(T searchValue, TreeNode<T>*& nodeFound, TreeNode<T>*& nodeParent)
 {
+	if (!find(searchValue))
+		return false;
+
 	//a current node to iterate through the tree
 	TreeNode<T>* currentNode = m_root;
 	bool found = false;
